@@ -17,22 +17,28 @@ def createVoiceDialog(text):
   finally:
     os.remove("archivo.mp3")
 
-def createConversation():
-    createVoiceDialog("Hola, ¿en qué puedo ayudarte?")
-    with mic as dialog:
+def recognizeAudio():
+  with mic as dialog:
           try:
             print("Escuchando")
             audio = r.listen(dialog)
           except LookupError: 
             print ("No entiendo")
-    transcript = r.recognize_google(audio, language="es-MX")
-    transcript = transcript.upper()
-    print('el audio dice {}'.format(transcript))
+  transcript = r.recognize_google(audio, language="es-MX")
+  transcript = transcript.upper()
+  print('el audio dice {}'.format(transcript))
+  return transcript
 
-    if "AIRBAG" in transcript:
-      createVoiceDialog("Listo fue un placer ayudarte, te dejo con un poco de música")
-      url = 'https://youtu.be/ue0RP3C1Brg?si=x3XPRkU4GxaojIjZ'
-      webbrowser.get().open(url)
+def createConversation():
+    createVoiceDialog("Hola, ¿en qué puedo ayudarte?")
+    transcript = recognizeAudio()
+    if "PELÍCULAS" in transcript:
+      createVoiceDialog("Puedes ir al cine o ver una película en casa")
+      transcript = recognizeAudio()
+      if "ABRE" in transcript:
+        url = 'https://youtu.be/ue0RP3C1Brg?si=x3XPRkU4GxaojIjZ'
+        webbrowser.get().open(url)
+        createVoiceDialog("Listo, fue un placer ayudarte")
     else:
         createVoiceDialog("No entiendo")
 
