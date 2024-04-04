@@ -8,16 +8,14 @@ r = speech_r.Recognizer()
 mic  = speech_r.Microphone()  
 
 def createVoiceDialog(text):
-    try:
-          file = "archivo.mp3"
-          text_voice = gTTS(text, lang='es-us')
-          action = open(file, "wb+")
-          text_voice.write_to_fp(action)
-          action.close()
-          playsound(file)
-          os.remove(file)
-    except Exception as e:
-        print("Error reproduciendo el audio:", e)
+  try:
+    text_voice = gTTS(text = text, lang='es-us')
+    text_voice.save("archivo.mp3")
+    playsound("archivo.mp3")
+  except Exception as e:
+    print("Error: ", e)
+  finally:
+    os.remove("archivo.mp3")
 
 def createConversation():
     createVoiceDialog("Hola, ¿en qué puedo ayudarte?")
@@ -31,10 +29,10 @@ def createConversation():
     transcript = transcript.upper()
     print('el audio dice {}'.format(transcript))
 
-    if "ENTRETENIMIENTO" in transcript:
-        url = 'https://youtu.be/ue0RP3C1Brg?si=x3XPRkU4GxaojIjZ'
-        createVoiceDialog("Listo fue un placer ayudarte, te dejo con un poco de música")
-        webbrowser.get().open(url)
+    if "AIRBAG" in transcript:
+      createVoiceDialog("Listo fue un placer ayudarte, te dejo con un poco de música")
+      url = 'https://youtu.be/ue0RP3C1Brg?si=x3XPRkU4GxaojIjZ'
+      webbrowser.get().open(url)
     else:
         createVoiceDialog("No entiendo")
 
