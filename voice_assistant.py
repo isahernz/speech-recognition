@@ -32,14 +32,17 @@ def recognizeAudio():
 def createConversation():
     createVoiceDialog("Hola, ¿en qué puedo ayudarte?")
     transcript = recognizeAudio()
-    if "PELÍCULAS" in transcript:
-      createVoiceDialog("Puedes ir al cine o ver una película en casa")
-      transcript = recognizeAudio()
-      if "ABRE" in transcript:
-        url = 'https://youtu.be/ue0RP3C1Brg?si=x3XPRkU4GxaojIjZ'
-        webbrowser.get().open(url)
-        createVoiceDialog("Listo, fue un placer ayudarte")
-    else:
-        createVoiceDialog("No entiendo")
-
+    while "GRACIAS" not in transcript:
+      if "PELÍCULAS" in transcript:
+        createVoiceDialog("Puedes ir al cine o ver una película en casa")
+        transcript = recognizeAudio()
+        if "ABRE" in transcript:
+            url = "https://www.youtube.com/watch?v=jzfJU-J9UL8"
+            webbrowser.get().open(url)
+            createVoiceDialog("¿Hay algo más en lo que pueda ayudarte?")
+            transcript = recognizeAudio()
+      else:
+          createVoiceDialog("No entiendo, ¿puedes repetir?")
+          transcript = recognizeAudio()
+    createVoiceDialog("Fue un placer ayudarte")
 createConversation()
