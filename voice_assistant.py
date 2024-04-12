@@ -7,7 +7,7 @@ import webbrowser
 
 # Dicctionaries of words
 synonymsThanks = ["GRACIAS", "NADA", "ES TODO", "ADIÓS", "BYE"]
-synonymsMusic = ["MÚSICA", "CANCIONES", "ROLA", "ROLITA", "CANCIÓN"]
+synonymsMusic = ["MÚSICA", "CANCIONES", "ROLA", "ROLITA", "CANCIÓN", "MELODÍA", "CANCIONCITA"]
 synonymsRock = ["ROCK"]
 synonymsPop = ["POP"]
 synonymsLove = ["BALADA", "ROMÁNTICA", "AMOR"]
