@@ -9,6 +9,7 @@ import webbrowser
 synonymsThanks = ["GRACIAS", "NADA", "ES TODO", "ADIÓS", "BYE"]
 synonymsMusic = ["MÚSICA", "CANCIONES", "ROLA", "ROLITA"]
 synonymsRock = ["ROCK"]
+synonymsPop = ["POP"]
 synonymsLove = ["BALADA", "ROMÁNTICA", "AMOR"]
 synonymsSonidero = ["SONIDERA", "BAILE", "CUMBIA"]
 
@@ -91,6 +92,17 @@ def createConversation():
           elif searchWordInDicctionary(synonymsSonidero, transcript):
             createVoiceDialog("¡Aquí tienes tu canción!")
             url = "https://www.youtube.com/watch?v=aGpEBxazyq4"
+            webbrowser.get().open(url)
+            if askIfExit():
+              createVoiceDialog("¡Fue un placer ayudarte!")
+              break
+            else:
+              transcript = recognizeAudio()
+              continue
+
+          elif searchWordInDicctionary(synonymsPop, transcript):
+            createVoiceDialog("¡Aquí tienes tu canción!")
+            url = "https://www.youtube.com/watch?v=wkJxbV1ZlE0"
             webbrowser.get().open(url)
             if askIfExit():
               createVoiceDialog("¡Fue un placer ayudarte!")
